@@ -44,7 +44,7 @@ import com.example.redditapp.data.repository.Repository
 class MainViewModelFactory(
   owner: SavedStateRegistryOwner,
   private val repository: Repository,
-  defaultArgs: Bundle? = null
+  private val defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
 
   override fun <T : ViewModel?> create(

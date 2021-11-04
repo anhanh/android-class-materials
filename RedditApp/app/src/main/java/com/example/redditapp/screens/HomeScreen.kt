@@ -18,5 +18,18 @@ import com.example.redditapp.viewmodel.MainViewModel
 
 @Composable
 fun HomeScreen(viewModel: MainViewModel) {
-  //TODO add your code here
+  val posts: List<PostModel> by viewModel.allPosts.observeAsState(listOf())
+
+  LazyColumn(
+    modifier = Modifier.background(color = MaterialTheme.colors.secondary)
+  ) {
+    items(posts) {
+      if (it.type == PostType.TEXT) {
+        TextPost(it)
+      } else {
+        ImagePost(it)
+      }
+      Spacer(modifier = Modifier.height(6.dp))
+    }
+  }
 }

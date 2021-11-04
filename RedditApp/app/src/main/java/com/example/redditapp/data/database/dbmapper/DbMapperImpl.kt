@@ -27,7 +27,7 @@ class DbMapperImpl : DbMapper {
     with(postModel) {
       return PostDbModel(
         null,
-        "raywenderlich",
+        "anhphamtuan",
         subreddit,
         title,
         text,

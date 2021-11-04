@@ -43,12 +43,48 @@ fun ImagePost(post: PostModel) {
 
 @Composable
 fun Post(post: PostModel, content: @Composable () -> Unit = {}) {
-  //TODO add your code here
+  Card(shape = MaterialTheme.shapes.large) {
+    Column(
+      modifier = Modifier.padding(
+        top = 8.dp,
+        bottom = 8.dp
+      )
+    ) {
+      Header(post)
+      Spacer(modifier = Modifier.height(4.dp))
+      content.invoke()
+      Spacer(modifier = Modifier.height(8.dp))
+      PostActions(post)
+    }
+  }
 }
 
 @Composable
 fun Header(post: PostModel) {
-  //TODO add your code here
+  Row(modifier = Modifier.padding(start = 16.dp)) {
+    Image(
+      ImageBitmap.imageResource(id = R.drawable.subreddit_placeholder),
+      contentDescription = stringResource(id = R.string.subreddits),
+      Modifier
+        .size(40.dp)
+        .clip(CircleShape)
+    )
+    Spacer(modifier = Modifier.width(8.dp))
+    Column(modifier = Modifier.weight(1f)) {
+      Text(
+        text = stringResource(R.string.subreddit_header, post.subreddit),
+        fontWeight = FontWeight.Medium,
+        color = MaterialTheme.colors.primaryVariant
+      )
+      Text(
+        text = stringResource(R.string.post_header, post.username, post.postedTime),
+        color = Color.Gray
+      )
+    }
+    MoreActionsMenu()
+  }
+
+  Title(text = post.title)
 }
 
 @Composable
@@ -66,7 +102,7 @@ fun MoreActionsMenu() {
 
     DropdownMenu(
       expanded = expanded,
-      onDismissRequest = { expanded = false }
+      onDismissRequest = { expanded = false },
     ) {
       CustomDropdownMenuItem(
         vectorResourceId = R.drawable.ic_baseline_bookmark_24,
@@ -169,12 +205,28 @@ fun VotingAction(
   onUpVoteAction: () -> Unit,
   onDownVoteAction: () -> Unit
 ) {
-  //TODO add your code here
+  Row(verticalAlignment = Alignment.CenterVertically) {
+    ArrowButton(onUpVoteAction, R.drawable.ic_baseline_arrow_upward_24)
+    Text(
+      text = text,
+      color = Color.Gray,
+      fontWeight = FontWeight.Medium,
+      fontSize = 12.sp
+    )
+    ArrowButton(onDownVoteAction, R.drawable.ic_baseline_arrow_downward_24)
+  }
 }
 
 @Composable
 fun ArrowButton(onClickAction: () -> Unit, arrowResourceId: Int) {
-  //TODO add your code here
+  IconButton(onClick = onClickAction, modifier = Modifier.size(30.dp)) {
+    Icon(
+      imageVector = ImageVector.vectorResource(arrowResourceId),
+      contentDescription = stringResource(id = R.string.upvote),
+      modifier = Modifier.size(20.dp),
+      tint = Color.Gray
+    )
+  }
 }
 
 @Composable
@@ -199,8 +251,12 @@ fun PostAction(
 
 @Preview
 @Composable
-fun ArrowButtonPreview() {
-  ArrowButton({}, R.drawable.ic_baseline_arrow_upward_24)
+fun PostActionPreview() {
+  PostAction(
+    vectorResourceId = R.drawable.ic_baseline_emoji_events_24,
+    text = stringResource(R.string.award),
+    onClickAction = {}
+  )
 }
 
 @Preview
@@ -209,6 +265,12 @@ fun HeaderPreview() {
   Column {
     Header(DEFAULT_POST)
   }
+}
+
+@Preview
+@Composable
+fun ArrowButtonPreview() {
+  ArrowButton({}, R.drawable.ic_baseline_arrow_upward_24)
 }
 
 @Preview

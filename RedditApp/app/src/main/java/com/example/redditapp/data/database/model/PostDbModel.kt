@@ -26,10 +26,10 @@ data class PostDbModel(
     val DEFAULT_POSTS = listOf(
       PostDbModel(
         1,
-        "raywenderlich",
+        "anhphamtuan",
         "androiddev",
-        "Check out this new book about Jetpack Compose from raywenderlich.com!",
-        "Check out this new book about Jetpack Compose from raywenderlich.com!",
+        "Check out this new book about Jetpack Compose from anhphamtuan.com!",
+        "Check out this new book about Jetpack Compose from anhphamtuan.com!",
         5614,
         523,
         0,
@@ -51,10 +51,10 @@ data class PostDbModel(
       ),
       PostDbModel(
         3,
-        "raywenderlich",
+        "anhphamtuan",
         "programming",
-        "Check out this new book about Jetpack Compose from raywenderlich.com!",
-        "Check out this new book about Jetpack Compose from raywenderlich.com!",
+        "Check out this new book about Jetpack Compose from anhphamtuan.com!",
+        "Check out this new book about Jetpack Compose from anhphamtuan.com!",
         5214,
         423,
         0,
@@ -63,7 +63,7 @@ data class PostDbModel(
       ),
       PostDbModel(
         4,
-        "raywenderlich",
+        "anhphamtuan",
         "puppies",
         "My puppy running around the house looks so cute!",
         "My puppy running around the house looks so cute!",

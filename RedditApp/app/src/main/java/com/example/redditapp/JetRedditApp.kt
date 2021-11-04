@@ -16,10 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.redditapp.appdrawer.AppDrawer
 import com.example.redditapp.routing.JetRedditRouter
 import com.example.redditapp.routing.Screen
-import com.example.redditapp.screens.AddScreen
-import com.example.redditapp.screens.HomeScreen
-import com.example.redditapp.screens.MyProfileScreen
-import com.example.redditapp.screens.SubredditsScreen
+import com.example.redditapp.screens.*
 import com.example.redditapp.theme.JetRedditTheme
 import com.example.redditapp.viewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -66,7 +63,7 @@ fun getTopBar(
   scaffoldState: ScaffoldState,
   coroutineScope: CoroutineScope
 ): @Composable (() -> Unit) {
-  if (screenState == Screen.MyProfile) {
+  if (screenState == Screen.MyProfile || screenState == Screen.ChooseCommunity) {
     return {}
   } else {
     return { TopAppBar(scaffoldState = scaffoldState, coroutineScope = coroutineScope) }
@@ -116,8 +113,9 @@ private fun MainScreenContainer(
     when (screenState.value) {
       Screen.Home -> HomeScreen(viewModel)
       Screen.Subscriptions -> SubredditsScreen()
-      Screen.NewPost -> AddScreen()
+      Screen.NewPost -> AddScreen(viewModel)
       Screen.MyProfile -> MyProfileScreen(viewModel)
+      Screen.ChooseCommunity -> ChooseCommunityScreen(viewModel)
     }
   }
 }
