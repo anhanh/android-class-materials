@@ -59,7 +59,7 @@ class RepositoryImpl(private val postDao: PostDao, private val mapper: DbMapper)
     postDao.getAllPosts().map(mapper::mapPost)
 
   private fun getAllOwnedPostsFromDatabase(): List<PostModel> =
-    postDao.getAllOwnedPosts("raywenderlich").map(mapper::mapPost)
+    postDao.getAllOwnedPosts("anhphamtuan").map(mapper::mapPost)
 
   override fun insert(post: PostModel) {
     postDao.insert(mapper.mapDbPost(post))

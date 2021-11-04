@@ -23,7 +23,7 @@ import kotlinx.coroutines.delay
 
 private const val SEARCH_DELAY_MILLIS = 300L
 
-private val defaultCommunities = listOf("raywenderlich", "androiddev", "puppies")
+private val defaultCommunities = listOf("anhphamtuan", "androiddev", "puppies")
 
 @Composable
 fun ChooseCommunityScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
