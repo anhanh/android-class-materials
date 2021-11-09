@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Razeware LLC
+ * Copyright (c) 2020 Razeware LLC
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,35 +31,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.example.redditapp.viewmodel
+package com.example.redditapp.views
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.redditapp.data.repository.Repository
-import com.example.redditapp.domain.model.PostModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import android.content.Context
+import android.util.AttributeSet
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import com.example.redditapp.R
 
-class MainViewModel(private val repository: Repository) : ViewModel() {
+class TrendingTopicView constructor(
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
+) : CardView(context, attrs, defStyleAttr) {
 
-  val allPosts by lazy { repository.getAllPosts() }
-
-  val myPosts by lazy { repository.getAllOwnedPosts() }
-
-  val subreddits by lazy { MutableLiveData<List<String>>() }
-
-  val selectedCommunity: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-
-  fun searchCommunities(searchedText: String) {
-    viewModelScope.launch(Dispatchers.Default) {
-      subreddits.postValue(repository.getAllSubreddits(searchedText))
+  var text: String = ""
+    set(value) {
+      field = value
+      findViewById<TextView>(R.id.text).text = value
     }
-  }
 
-  fun savePost(post: PostModel) {
-    viewModelScope.launch(Dispatchers.Default) {
-      repository.insert(post.copy(subreddit = selectedCommunity.value ?: ""))
+  var image: Int = 0
+    set(value) {
+      field = value
+      findViewById<ImageView>(R.id.image).setImageResource(value)
     }
+
+  init {
+    inflate(context, R.layout.view_trending_topic, this)
+    radius = resources.getDimension(R.dimen.trending_view_corner_radius)
+
+    val width = resources.getDimensionPixelSize(R.dimen.trending_view_width)
+    val height = resources.getDimensionPixelSize(R.dimen.trending_view_height)
+    val layoutParams = ViewGroup.LayoutParams(width, height)
+
+    setLayoutParams(layoutParams)
   }
 }

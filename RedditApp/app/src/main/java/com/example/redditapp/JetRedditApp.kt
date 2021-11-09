@@ -1,15 +1,19 @@
 package com.example.redditapp
 
 
+import android.content.Intent
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -22,6 +26,7 @@ import com.example.redditapp.viewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@ExperimentalAnimationApi
 @Composable
 fun JetRedditApp(viewModel: MainViewModel) {
   JetRedditTheme {
@@ -29,6 +34,7 @@ fun JetRedditApp(viewModel: MainViewModel) {
   }
 }
 
+@ExperimentalAnimationApi
 @Composable
 private fun AppContent(viewModel: MainViewModel) {
   val scaffoldState: ScaffoldState = rememberScaffoldState()
@@ -76,6 +82,7 @@ fun getTopBar(
 @Composable
 fun TopAppBar(scaffoldState: ScaffoldState, coroutineScope: CoroutineScope) {
 
+  val context = LocalContext.current
   val colors = MaterialTheme.colors
 
   TopAppBar(
@@ -96,10 +103,24 @@ fun TopAppBar(scaffoldState: ScaffoldState, coroutineScope: CoroutineScope) {
           contentDescription = stringResource(id = R.string.account)
         )
       }
+    },
+    actions = {
+      if (JetRedditRouter.currentScreen.value == Screen.Home) {
+        IconButton(onClick = {
+          context.startActivity(Intent(context, ChatActivity::class.java))
+        }) {
+          Icon(
+            Icons.Filled.MailOutline,
+            tint = Color.LightGray,
+            contentDescription = "Chat Icon"
+          )
+        }
+      }
     }
   )
 }
 
+@ExperimentalAnimationApi
 @Composable
 private fun MainScreenContainer(
   modifier: Modifier = Modifier,
