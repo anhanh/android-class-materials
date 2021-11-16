@@ -105,6 +105,7 @@ fun Header(
       )
     }
     Spacer(modifier = Modifier.width(4.dp))
+    JoinButton(onJoinButtonClick)
     MoreActionsMenu()
   }
 
