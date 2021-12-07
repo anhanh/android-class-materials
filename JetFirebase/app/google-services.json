@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "252941712443",
+    "project_id": "jetfirebase-8885f",
+    "storage_bucket": "jetfirebase-8885f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252941712443:android:efebf05c393d6fc028301e",
+        "android_client_info": {
+          "package_name": "com.sample.jetfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252941712443-sojk7ou71sj2103vor9rjetr0e6100bh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhVFNorkTzhcuOHdiJ22WO_Rq9tityRkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252941712443-sojk7ou71sj2103vor9rjetr0e6100bh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
